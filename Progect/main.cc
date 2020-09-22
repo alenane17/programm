@@ -19,10 +19,19 @@
 			std::stringstream inps {inp};
 			inps >> result;
 			if (inps.fail()){
+				if (std::cin.fail()){
+					std::cerr <<"Ошибка ввода-вывода!" << std::endl;
+					exit(1);
+				}
 				std::cout << "Некорректный ввод!" << std::endl;
 						goto re;
 			}
-		}
+						else if (not inps.eof()){
+							std::cout << "Непонятный мусор в конце ввода!" << std::endl;
+							goto re;
+						}
+
+						}
 		return result;
 	}
 
@@ -38,6 +47,7 @@ int main(){
 	std::cout << std::endl;
 	//Спрашиваем, сколько тянет юзверь
 	std::cout << "Сколько камней Вы берете?" << std::endl;
+	int x = read_int("Введите число: ");
 	//Уменьшаем кучу
 	//Если 0 камней, то юзверь проиграл, иначе ход компьютера
 	//Если 1 камень, то проиграл компьютер
